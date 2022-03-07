@@ -1,0 +1,72 @@
+  
+
+		<div class="banner">
+	 
+
+				
+			<mat-carousel
+				timings="250ms ease-in"
+				[autoplay]="true"
+				interval="5000"
+				color="accent"
+				maxWidth="auto"
+				proportion="25"
+				slides="5"
+				[loop]="true"
+				[hideArrows]="false"
+				[hideIndicators]="false"
+				[useKeyboard]="true"
+				orientation="ltr"
+			>
+				<mat-carousel-slide
+					#matCarouselSlide
+					*ngFor="let slide of slides; let i = index"
+					[image]="slide.image"
+					overlayColor="#00000040"
+					[hideOverlay]="false"
+				></mat-carousel-slide>
+			</mat-carousel>
+						
+					
+
+			<div class="container" itemprop="description">
+				<h1>WCC-ATC Alumni Tracer System</h1></div>
+			 <div id="owl-four-nav" class="owl-nav"></div>
+
+		</div>
+		<!-- <section class="page-heading">
+			<div class="container">
+				<h2>upcomming events</h2>
+			</div>
+		</section> -->
+		<!-- <section class="events-section" itemprop="event" itemscope itemtype=" http://schema.org/Event">
+			<div class="container">
+				<div class="event-wrap">
+					<div class="img-wrap" itemprop="image">
+						<img src="images/eventpic.jpg" alt="event images">
+					</div>
+					<div class="details">
+						<a href=""><h3 itemprop="name">EVENTS</h3></a>
+						<p itemprop="description">REUNION </p>
+
+						<h5 itemprop="startDate"><i class="far fa-clock"></i>March 05,2022</h5>
+						<h5 itemprop="location"><i class="fas fa-map-marker-alt"></i> WCC-ATC </h5>
+					</div>
+				</div>
+
+				<div class="event-wrap">
+					<div class="img-wrap" itemprop="image">
+						<img src="images/eventpic.jpg" alt="event images">
+					</div>
+					<div class="details">
+						<a href=""><h3 itemprop="name">EVENTS.</h3></a>
+						<p itemprop="description">REUNION</p>
+
+						<h5 itemprop="startDate"><i class="far fa-clock"></i>March 05,2022</h5>
+						<h5 itemprop="location"><i class="fas fa-map-marker-alt"></i>WCC-ATC </h5>
+					</div>
+				</div>
+			</div>
+		</section>
+		 -->
+ 

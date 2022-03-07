@@ -1,0 +1,340 @@
+<div
+  class="login-register"
+  style="background-image: url(assets/images/wcc/grad.jpeg)"
+>
+  <div class="login-register-box" style="max-width: 100% !important;">
+    <mat-card>
+      <mat-card-content> 
+
+          <div class="text-center">
+            <img alt="homepage" src="assets/images/wcc/logo.jpg" />
+            <h4 class="m-t-0">Register to App</h4>
+          </div>
+
+
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-horizontal-stepper [linear]="false">
+                    <mat-step [stepControl]="form1">
+                    <form [formGroup]="form1">
+                        <ng-template matStepLabel>Fill out your Account Info</ng-template>
+
+                        <div  fxLayout="row">
+
+                            <mat-form-field  fxFlex.gt-lg="50" fxFlex.gt-md="50"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                    matInput 
+                                    placeholder="Student No." 
+                                    formControlName="ReferenceNbr"
+                                />
+                            </mat-form-field>
+                 
+ 
+                             <mat-form-field  fxFlex.gt-lg="50" fxFlex.gt-md="50"  fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-select placeholder="Batch Graduated" formControlName="BatchYr">
+                                    <mat-option value="2015-2016">2015-2016</mat-option>
+                                    <mat-option value="2016-2017">2016-2017</mat-option>
+                                    <mat-option value="2017-2018">2017-2018</mat-option>
+                                    <mat-option value="2018-2019">2018-2019</mat-option>
+                                    <mat-option value="2019-2020">2019-2020</mat-option>
+                                    <mat-option value="2020-2021">2020-2021</mat-option>
+                                </mat-select>
+                            </mat-form-field> 
+
+                        </div> 
+        
+                  
+                        <div  fxLayout="row">
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                type="email"
+                                placeholder="Email" 
+                                formControlName="Email"
+                                />
+                            </mat-form-field>
+                     
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                type="password"
+                                placeholder="Password" 
+                                formControlName="Password"
+                                />
+                            </mat-form-field>
+              
+                                
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                placeholder="Confirm Password"
+                                type="password"
+                                formControlName="ConfirmPassword"
+                                />
+                            </mat-form-field> 
+
+                        </div> 
+        
+                         
+                        <div  fxLayout="row">
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                placeholder="Last Name"
+                                formControlName="LastName"
+
+                                />
+                            </mat-form-field>  
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                placeholder="First Name"
+                                formControlName="FirstName"
+
+                                />
+                            </mat-form-field> 
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput
+                                placeholder="Middle Name"
+                                formControlName="MiddleName"
+
+                                />
+                            </mat-form-field> 
+
+                        </div>
+                            
+
+
+
+                        
+                        <div  fxLayout="row">
+
+
+                            <mat-form-field  fxFlex.gt-lg="50" fxFlex.gt-md="50"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                matInput 
+                                placeholder="Contact Number" 
+                                formControlName="ContactNo"
+
+                                />
+                            </mat-form-field>
+                
+                
+
+                        </div> 
+            
+
+                  
+            
+
+                        <div>
+                            <button mat-raised-button color="warn" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                    
+                    </mat-step>
+
+                    <mat-step [stepControl]="form2">
+                    <form [formGroup]="form2">
+
+                        <ng-template matStepLabel>Fill out your Work Info</ng-template>
+
+
+                        <div  fxLayout="row">
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                    matInput
+                                    placeholder="Company Name"
+                                    formControlName="Company"
+                                />
+                            </mat-form-field>  
+
+                            <mat-form-field  fxFlex.gt-lg="66" fxFlex.gt-md="66"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                    matInput
+                                    placeholder="Company Address"
+                                    formControlName="CompanyAddress"
+                                />
+                            </mat-form-field> 
+ 
+ 
+                        </div>
+
+                        <div  fxLayout="row" class="m-b-10">
+
+                            <div  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+
+                                <mat-checkbox  formControlName="IsYourJobRelated">Is Your Job Related?</mat-checkbox>
+                                
+                            </div> 
+
+                        </div>
+                            
+                        <div fxLayout="row" *ngIf="form2.get('IsYourJobRelated')?.value">
+                            
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                    matInput
+                                    placeholder="Position"
+                                    formControlName="Position"
+                                />
+                            </mat-form-field> 
+
+
+                            <mat-form-field  fxFlex.gt-lg="50" fxFlex.gt-md="50"  fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-select placeholder="No. of Yrs" formControlName="NoOfYrs">
+                                    <mat-option value="N/A">N/A</mat-option>
+                                    <mat-option value="Less than 1 year">Less than 1 year</mat-option>
+                                    <mat-option value="1-3 years">1-3 years</mat-option>
+                                    <mat-option value="4-5 years">4-5 years</mat-option>
+                                    <mat-option value="6 year and above">6 year and above</mat-option>
+                                </mat-select>
+                            </mat-form-field> 
+
+
+                        </div>
+
+            
+                        <div fxLayout="row" *ngIf="!form2.get('IsYourJobRelated')?.value">
+
+                            <mat-form-field  fxFlex.gt-lg="33" fxFlex.gt-md="33"  fxFlex.gt-xs="100" fxFlex="100">
+                                <input
+                                    matInput
+                                    placeholder="Please specify other position"
+                                    formControlName="Position"
+                                />
+                            </mat-form-field> 
+
+
+                            <mat-form-field  fxFlex.gt-lg="50" fxFlex.gt-md="50"  fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-select placeholder="No. of Yrs" formControlName="NoOfYrs">
+                                    <mat-option value="N/A">N/A</mat-option>
+                                    <mat-option value="Less than 1 year">Less than 1 year</mat-option>
+                                    <mat-option value="1-3 years">1-3 years</mat-option>
+                                    <mat-option value="4-5 years">4-5 years</mat-option>
+                                    <mat-option value="6 year and above">6 year and above</mat-option>
+                                </mat-select>
+                            </mat-form-field> 
+
+
+                        </div>
+
+                        <div>
+                            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="warn" class="m-l-5" matStepperNext>Next</button>
+                        </div>
+
+                    </form>
+
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Confirmation</ng-template>
+
+
+                        <mat-card>
+                            <mat-card-content>
+                              <mat-card-title>Account Info</mat-card-title> 
+                      
+                              <div fxLayout="row wrap">
+                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                  <div fxLayout="column">
+                                    <span>Name:</span>
+                                    <span>Student Number : </span>
+                                    <span>Batch Yr:</span>
+                                    <span>Email:</span>
+                                    <span>Contact No:</span>
+                                  </div>
+                                </div>
+
+                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                    <div fxLayout="column">
+                                      <span>{{ form1.get('LastName')?.value + ', ' + form1.get('FirstName')?.value + ' ' + form1.get('MiddleName')?.value }}</span>
+                                      <span>{{ form1.get('ReferenceNbr')?.value }} </span>
+                                      <span>{{ form1.get('BatchYr')?.value }}</span>
+                                      <span>{{ form1.get('Email')?.value }}</span>
+                                      <span>{{ form1.get('ContactNo')?.value }}</span>
+                                    </div>
+                                  </div>
+
+                              </div>
+
+                            </mat-card-content>
+                          </mat-card>
+
+
+
+                          <mat-card>
+                            <mat-card-content>
+                              <mat-card-title>Work Info</mat-card-title> 
+                      
+                              <div fxLayout="row wrap">
+                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                  <div fxLayout="column">
+                                    <span>Company:</span>
+                                    <span>Address: </span> 
+
+                                    <span>Position:</span>
+ 
+                                    <span>No. of Years:</span>
+                                  </div>
+                                </div>
+
+                              
+                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                    <div fxLayout="column">
+                                      <span>{{ form2.get('Company')?.value  }}</span>
+                                      <span>{{ form2.get('CompanyAddress')?.value }}</span>
+  
+                                      <span>{{ form2.get('Position')?.value }}</span>
+ 
+                                      <span>{{ form2.get('NoOfYrs')?.value }}</span>
+
+
+                                    </div>
+                                  </div>
+
+                              </div>
+
+                      
+                    
+                            </mat-card-content>
+                          </mat-card>
+
+
+
+                        <div class="m-t-15">
+
+                            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+
+                            <button mat-raised-button class="m-l-5" color="primary" (click)="onRegister()">Register</button>
+
+                        </div>
+                    </mat-step>
+
+                </mat-horizontal-stepper>
+
+
+            </div>
+    
+
+            <div class="text-center" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <span
+                >Already have an account?
+                <a [routerLink]="['/auth/login']" class="link text-info"> Login</a>
+              </span>
+            </div>
+
+            
+          </div> 
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

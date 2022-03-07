@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AnnouncementComponent, AnnouncementDialogComponent } from './announcement.component';
+import { DemoMaterialModule } from 'src/app/demo-material-module';
+import { FlexLayoutModule } from '@angular/flex-layout'; 
+import { AnnouncementRoutingModule } from './announcement-routing.module';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
+@NgModule({
+  declarations: [
+    AnnouncementComponent,
+    AnnouncementDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    DemoMaterialModule,
+    FlexLayoutModule,
+    QuillModule.forRoot(),    
+    AnnouncementRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,  
+
+  ]
+})
+export class AnnouncementModule { }
