@@ -1,9 +1,9 @@
 export class JobProfile { 
  
      
-    id!: number;
+    id !: any;
  
-    ProfileID !: number;
+    ProfileID ?: any;
 
 
  

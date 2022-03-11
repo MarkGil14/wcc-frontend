@@ -266,46 +266,46 @@
                               </div>
 
                             </mat-card-content>
-                          </mat-card>
+                        </mat-card>
 
 
 
-                          <mat-card>
-                            <mat-card-content>
-                              <mat-card-title>Work Info</mat-card-title> 
-                      
-                              <div fxLayout="row wrap">
-                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
-                                  <div fxLayout="column">
-                                    <span>Company:</span>
-                                    <span>Address: </span> 
+                        <mat-card>
+                        <mat-card-content>
+                            <mat-card-title>Work Info</mat-card-title> 
+                    
+                            <div fxLayout="row wrap">
+                            <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                <div fxLayout="column">
+                                <span>Company:</span>
+                                <span>Address: </span> 
 
-                                    <span>Position:</span>
- 
-                                    <span>No. of Years:</span>
-                                  </div>
+                                <span>Position:</span>
+
+                                <span>No. of Years:</span>
+                                </div>
+                            </div>
+
+                            
+                            <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
+                                <div fxLayout="column">
+                                    <span>{{ form2.get('Company')?.value  }}</span>
+                                    <span>{{ form2.get('CompanyAddress')?.value }}</span>
+
+                                    <span>{{ form2.get('Position')?.value }}</span>
+
+                                    <span>{{ form2.get('NoOfYrs')?.value }}</span>
+
+
+                                </div>
                                 </div>
 
-                              
-                                <div fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex="100">
-                                    <div fxLayout="column">
-                                      <span>{{ form2.get('Company')?.value  }}</span>
-                                      <span>{{ form2.get('CompanyAddress')?.value }}</span>
-  
-                                      <span>{{ form2.get('Position')?.value }}</span>
- 
-                                      <span>{{ form2.get('NoOfYrs')?.value }}</span>
+                            </div>
 
-
-                                    </div>
-                                  </div>
-
-                              </div>
-
-                      
                     
-                            </mat-card-content>
-                          </mat-card>
+                
+                        </mat-card-content>
+                        </mat-card>
 
 
 
@@ -313,7 +313,7 @@
 
                             <button mat-raised-button color="accent" matStepperPrevious>Back</button>
 
-                            <button mat-raised-button class="m-l-5" color="primary" (click)="onRegister()">Register</button>
+                            <button mat-raised-button class="m-l-5" color="primary" (click)="onRegister()" [disabled]="submitDisable">Submit</button>
 
                         </div>
                     </mat-step>

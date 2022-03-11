@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { retry } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { JobProfile } from 'src/app/shared/model/job-profile.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -36,12 +37,17 @@ export class RegisterComponent implements OnInit {
    * for data entry of work info
    */
   form2 : FormGroup = Object.create(RegisterWorkInfo);
+
+  submitDisable !: boolean;
  
 
   constructor(
     private readonly http: HttpClient,
-    private authService : AuthService
-  ) {}
+    private authService : AuthService,
+    public snackBar: MatSnackBar
+  ) {
+    this.submitDisable = false;
+  }
 
   ngOnInit(): void {
    
@@ -75,7 +81,6 @@ export class RegisterComponent implements OnInit {
 
     const profile : Profile = {
       id : null,
-      AccountID : null,
       FirstName : this.form1.get('FirstName')?.value,
       LastName : this.form1.get('LastName')?.value,
       MiddleName : this.form1.get('MiddleName')?.value,      
@@ -94,27 +99,40 @@ export class RegisterComponent implements OnInit {
         profile
     }
 
-    // const job_profile : JobProfile = {
- 
+    const job_profile : JobProfile = {
+      
+      id : null,
+      Company : this.form2.get('Company')?.value,
+      CompanyAddress : this.form2.get('CompanyAddress')?.value,
+      isYourJobRelated : this.form2.get('isYourJobRelated')?.value,
+      Position : this.form2.get('Position')?.value,
+      NoOfYrs : this.form2.get('NoOfYrs')?.value
 
-    // }
+    }
    
 
 
-    // const alumni : RegisterAlumniDto = {
-
-    //   account,
-    //   profile,
-
-
-
-    // }
-
+    const registerAlumniDto : RegisterAlumniDto = {
+      account,
+      profile,
+      job_profile
+    }
     
 
-    // this.authService.register().subscribe(result => {
+    this.authService.register(registerAlumniDto).subscribe(result => {
 
-    // })
+      this.snackBar.open('Register was Successfully Completed', 'Close', {
+        duration: 2000,
+        horizontalPosition : 'right',
+        verticalPosition : 'top'
+      });
+
+      this.submitDisable = true;
+
+      // this.form1.reset()
+      // this.form2.reset();
+
+    })
 
 
 

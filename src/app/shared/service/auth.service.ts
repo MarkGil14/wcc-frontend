@@ -38,7 +38,7 @@ export class AuthService {
 
     register(alumni : RegisterAlumniDto) : Observable<any> {
 
-        return this.http.post(`${environment.api.authentication}/register`,alumni, httpOptions)
+        return this.http.post(`${environment.api.authentication}/alumni-register`,alumni, httpOptions)
         .pipe(retry(0));
   
 
