@@ -37,7 +37,25 @@ const MENUITEMS = [
     type: 'link',
     icon: 'announcement',
   },
- 
+  {
+    state: 'student',
+    name: 'Alumni',
+    type: 'sub',
+    icon: 'account_circle',
+    children : [
+      {
+        state : "pending",
+        name : "Pending Account",
+        type : "link",
+      },
+      {
+        state : "list",
+        name : "Alumni Record",
+        type : "link",
+      },
+
+    ]
+  }, 
   {
     state: 'profile',
     name: 'Profile',

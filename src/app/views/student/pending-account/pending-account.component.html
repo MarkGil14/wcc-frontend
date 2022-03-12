@@ -1,0 +1,46 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Pending Account</mat-card-title>
+          <div class="table-responsive">
+            <ngx-datatable
+              #table
+              class="material"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [rows]="rows"
+            >
+
+            
+                <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop">
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Action" prop="Action">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+
+                        <div class="button-row">
+                           
+                            <button mat-mini-fab color="accent" title="View" (click)="viewPendingAccount(row)"><mat-icon>preview</mat-icon></button>
+                            <button mat-mini-fab color="primary"  title="Confirm"  (click)="confirmVerifyAccount(row)"><mat-icon>check_circle</mat-icon></button>
+                            <button mat-mini-fab color="warn"  title="Decline"  (click)="inactiveAccount(row)"><mat-icon>clear</mat-icon></button>
+
+                        </div>
+                  
+                    </ng-template>
+          
+                  </ngx-datatable-column>
+
+
+            </ngx-datatable>
+          </div>
+         
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

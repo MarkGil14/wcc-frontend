@@ -39,7 +39,11 @@ export const AppRoutes: Routes = [
         loadChildren: () =>
           import('./views/home/home.module').then((m) => m.HomeModule),
       },
-
+      {
+        path: 'student',
+        loadChildren: () =>
+          import('./views/student/student.module').then((m) => m.StudentModule),
+      },
 
   
     ],

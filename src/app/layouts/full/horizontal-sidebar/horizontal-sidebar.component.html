@@ -58,7 +58,7 @@
     <mat-nav-list class="sub-item" *ngIf="menuitem.type === 'sub'">
       <mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="selected">
         <a
-          [routerLink]="['/', menuitem.state, childitem.state]"
+          [routerLink]="[ menuitem.state, childitem.state]"
           class="relative"
           routerLinkActive="selected"
           >{{ childitem.name | translate }}</a
