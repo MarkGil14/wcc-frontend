@@ -4,12 +4,14 @@ import { ProfileComponent } from './profile.component';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { AdminProfileComponent } from './admin-profile.component';
 
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    AdminProfileComponent,
   ],
   imports: [
     CommonModule,

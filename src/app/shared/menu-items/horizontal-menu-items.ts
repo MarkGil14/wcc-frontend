@@ -57,7 +57,7 @@ const MENUITEMS = [
     ]
   }, 
   {
-    state: 'profile',
+    state: 'profile/admin-profile',
     name: 'Profile',
     type: 'link',
     icon: 'account_circle',

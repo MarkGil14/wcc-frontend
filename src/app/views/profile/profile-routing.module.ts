@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AdminProfileComponent } from "./admin-profile.component";
 import { ProfileComponent } from "./profile.component";
  
 
@@ -7,8 +8,11 @@ export const routes: Routes = [
   
   {
     path: '',
-    component: ProfileComponent,
- 
+    component: ProfileComponent, 
+  },
+  {
+    path: 'admin-profile',
+    component: AdminProfileComponent, 
   },
 
 ]
