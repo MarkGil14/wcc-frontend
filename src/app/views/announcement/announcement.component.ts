@@ -129,6 +129,7 @@ export class AnnouncementComponent implements OnInit {
           this.announcements.unshift(result);
 
           this.announcementForm.reset();
+          this.announcementForm.markAsPristine();
 
 
         })

@@ -71,7 +71,14 @@
               <img src="assets/images/users/admin.jpg" class="img-circle" />
             </span>
             <div fxFlex>
-              <div class="font-14">Admin</div>
+              <h3 matLine>Admin
+                <small class="text-muted font-10">{{ announcment.DatePublish | date : 'MMMM d, y'}}</small>  
+              </h3>
+
+              <!-- <div class="m-l-10">
+                <span class="text-muted font-10">johndeo@gmail.com</span>
+              </div> -->
+
             </div>
 
             <button [matMenuTriggerFor]="them" mat-icon-button class="ml-1">
