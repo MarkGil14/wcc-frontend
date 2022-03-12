@@ -121,7 +121,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(registerAlumniDto).subscribe(result => {
 
-      this.snackBar.open('Register was Successfully Completed', 'Close', {
+      this.snackBar.open('Thank you for signing up waiting for admin verification', 'Close', {
         duration: 2000,
         horizontalPosition : 'right',
         verticalPosition : 'top'
