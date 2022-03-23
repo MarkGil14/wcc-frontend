@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       this.form = new FormGroup({      
         ReferenceNbr : new FormControl('', [Validators.required]),
         Password : new FormControl('', [Validators.required]),
+        AccountType : new FormControl('Student', [Validators.required]),
       })
              
 
@@ -46,7 +47,8 @@ export class LoginComponent implements OnInit {
 
       const authCredential : LoginCredentialDto = {
         ReferenceNbr : this.form.get('ReferenceNbr')?.value,
-        Password : this.form.get('Password')?.value
+        Password : this.form.get('Password')?.value,
+        AccountType : this.form.get('AccountType')?.value
       }
 
       if(this.form.valid) {
@@ -54,7 +56,15 @@ export class LoginComponent implements OnInit {
         this.authService.login(authCredential).subscribe((data : any) => {
 
           if(!data.error)  {
+
+            console.log(data);
+            
+            this.authService.setUserInLocalStorage(data);
+
+            
             this.router.navigate(['/app/home'])
+
+
           }else {
 
             // this.toastr.warning('LOGIN FAILED', data.error);

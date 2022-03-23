@@ -4,4 +4,7 @@ export class LoginCredentialDto {
 
     Password !: string;
 
+    AccountType !: string;
+
+
 }

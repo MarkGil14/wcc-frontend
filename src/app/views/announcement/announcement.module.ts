@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AnnouncementRoutingModule } from './announcement-routing.module';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 
 
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AnnouncementRoutingModule,
     FormsModule,
     ReactiveFormsModule,  
+    MatFileUploadModule
 
   ]
 })

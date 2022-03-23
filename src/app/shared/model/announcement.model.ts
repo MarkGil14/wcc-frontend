@@ -14,4 +14,18 @@ export class Announcement {
     DatePublish !: Date;     
 
 
+    announcement_images !: AnnouncementImages[]
+
+}
+
+
+
+export class AnnouncementImages {
+
+    id : any;
+
+    AnnouncementID !: number;
+
+    ImageUrl !: string;
+
 }

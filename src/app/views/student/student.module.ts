@@ -9,6 +9,8 @@ import { PendingAccountComponent } from './pending-account/pending-account.compo
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ViewPendingAccountComponent } from './pending-account/view-pending-account.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { StudentViewProfileComponent } from './student-profile/student-view-profile.component';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { ViewPendingAccountComponent } from './pending-account/view-pending-acco
     StudentListComponent,
     PendingAccountComponent,
     ViewPendingAccountComponent,
+    StudentViewProfileComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,10 @@ import { ViewPendingAccountComponent } from './pending-account/view-pending-acco
     NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule,  
-    DemoMaterialModule
+    DemoMaterialModule,
+    Ng2SearchPipeModule
+  ],
+  exports : [
   ]
 })
 export class StudentModule { }

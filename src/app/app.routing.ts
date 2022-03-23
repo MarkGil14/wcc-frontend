@@ -27,13 +27,6 @@ export const AppRoutes: Routes = [
         loadChildren: () =>
           import('./views/job/job.module').then((m) => m.JobModule),
       },
-
-
-      {
-        path: 'profile',
-        loadChildren: () =>
-          import('./views/profile/profile.module').then((m) => m.ProfileModule),
-      },
       {
         path: 'home',
         loadChildren: () =>
@@ -43,6 +36,17 @@ export const AppRoutes: Routes = [
         path: 'student',
         loadChildren: () =>
           import('./views/student/student.module').then((m) => m.StudentModule),
+      },
+
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./views/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+      },
+      {
+        path: 'import',
+        loadChildren: () =>
+          import('./views/import/import.module').then((m) => m.ImportModule),
       },
 
   

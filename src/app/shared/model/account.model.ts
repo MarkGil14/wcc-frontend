@@ -6,7 +6,7 @@ export class Account {
 
     ReferenceNbr !: string;
 
-    AccountType ! : 'alumni' | 'admin';
+    AccountType ! : 'Alumni' | 'Admin';
 
 
     BatchYr ! : string;
@@ -23,6 +23,7 @@ export class Account {
   
     IsVerified !: boolean;
 
+    isActive ?: boolean;
     
     profile ?: Profile;
 

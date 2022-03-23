@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Account } from 'src/app/shared/model/account.model';
+import { StudentService } from 'src/app/shared/service/student.service';
+import { BaseCustomComponent } from '../custom/base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseCustomComponent implements OnInit {
 
 
   
@@ -22,12 +27,55 @@ export class HomeComponent implements OnInit {
   ]
 
   
+  BatchYr = '';
 
-  constructor() { }
+  searchText: any;
+ 
+  students : Account[] = [];
 
-  ngOnInit(): void {
+
+  constructor(
+    public dialog: MatDialog,
+    readonly studentService : StudentService,
+    private router: Router
+  ) {
+
+    super();
+
   }
 
+  
+  ngOnInit(): void {
 
+    this.filterStudents();
+ 
+    
+  }
+
+  filterStudents() {
+
+    let query = '';
+     
+
+    if(this.BatchYr != ''){
+
+        query += `&filter=BatchYr||$eq||${this.BatchYr}`;
+
+    }else {
+
+
+        query = '&limit=20';
+
+    }
+
+
+    this.studentService.getAlumniFilter(query).subscribe(data => {
+        
+        this.students = data;
+        console.log(this.students)
+    })
+
+
+  }
 
 }

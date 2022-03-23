@@ -2,8 +2,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Account } from 'src/app/shared/model/account.model';
 import { Announcement } from 'src/app/shared/model/announcement.model';
+import { Profile } from 'src/app/shared/model/profile.model';
 import { AnnouncementService } from 'src/app/shared/service/announcement.service';
+import { LocalStoreService } from 'src/app/shared/service/local-store.service';
+import { BaseCustomComponent } from '../custom/base.component';
 
 
 
@@ -51,11 +55,22 @@ export class AnnouncementDialogComponent {
   templateUrl: './announcement.component.html',
   styleUrls: ['./announcement.component.scss']
 })
-export class AnnouncementComponent implements OnInit {
-
-  constructor( public dialog: MatDialog, private announcementService : AnnouncementService, public snackBar: MatSnackBar) { }
+export class AnnouncementComponent extends BaseCustomComponent implements OnInit {
  
-  
+  constructor( 
+      public dialog: MatDialog, 
+      private announcementService : AnnouncementService, 
+      public snackBar: MatSnackBar, 
+    ) { 
+
+      super()
+
+    }
+ 
+  announcment_files:string [] = [];
+
+  announcment_images_preview :string [] = [];
+
   announcementContent !: any;
 
 
@@ -75,7 +90,7 @@ export class AnnouncementComponent implements OnInit {
       Description : new FormControl('', [Validators.required]),
       Author : new FormControl('', [Validators.required]),
       DatePublish : new FormControl(new Date()),
-      Location : new FormControl(''),
+      Location : new FormControl(''), 
     })
 
     // this.announcementContent = this.announcementContent ?? new FormControl()
@@ -84,13 +99,47 @@ export class AnnouncementComponent implements OnInit {
     /**
      * auto load all announcement
      */
-    this.announcementService.getAnnouncement().subscribe(announcements => {
-
-      this.announcements = announcements;
-
-    })
+    this.loadAnnouncements();
            
 
+  }
+
+ 
+
+  loadAnnouncements() {
+    this.announcementService.getAnnouncement().subscribe(announcements => {
+
+
+
+      for (let index = 0; index < announcements.length; index++) {
+        const announcement = announcements[index];
+
+        announcement.announcement_images
+
+        for (let i = 0; i < announcement.announcement_images.length; i++) {
+          const img = announcement.announcement_images[i];
+           
+          this.announcementService.getImage(img.ImageUrl).subscribe(imgPath => {
+          
+            let reader = new FileReader();
+          
+            img.ImageUrl =  reader.readAsDataURL(imgPath);
+
+            reader.onload = _event => {
+              img.ImageUrl = reader.result; //image declared earlier
+            };
+
+          })
+  
+ 
+        }
+        
+      }
+
+      this.announcements = announcements;
+ 
+
+    })
   }
 
     // Compose button
@@ -105,18 +154,43 @@ export class AnnouncementComponent implements OnInit {
     
 
 
+    onFileChange(event : any){
+      for (var i = 0; i < event.target.files.length; i++) { 
 
+          this.announcment_files.push(event.target.files[i]);
 
+           
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.announcment_images_preview.push(reader.result as string)
+          }
+          
+          reader.readAsDataURL(event.target.files[i])
 
-    onPostAnnouncement() {
+      }
+    }
+
  
 
+    onPostAnnouncement() {
+  
       if(this.announcementForm.valid) {
 
         const announcement : Announcement = this.announcementForm.value;
-
+       
 
         this.announcementService.saveAnnouncement(announcement).subscribe((result : any) => {
+
+
+
+          const formData = new FormData(); 
+          for (let i = 0; i < this.announcment_files.length; i++) { 
+            formData.append("file[]", this.announcment_files[i]);
+          }
+        
+          this.announcementService.saveAnnouncementImages(result.id, formData).subscribe((resultImage : any) => {
+          })
+    
 
 
           this.snackBar.open('Announcement was Successfully Posted', 'Close', {
@@ -126,11 +200,14 @@ export class AnnouncementComponent implements OnInit {
           });
 
 
-          this.announcements.unshift(result);
+          // this.announcements.unshift(result);
+
+          this.loadAnnouncements();
 
           this.announcementForm.reset();
           this.announcementForm.markAsPristine();
-
+          this.announcment_images_preview = [];
+          this.announcment_files = [];
 
         })
 
@@ -141,6 +218,7 @@ export class AnnouncementComponent implements OnInit {
     }
 
 
-
+ 
+ 
 
 }

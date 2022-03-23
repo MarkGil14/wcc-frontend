@@ -1,0 +1,543 @@
+<div fxLayout="row wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="25" fxFlex="100">
+      <mat-card class="oh text-center little-profile">
+        <img
+          mat-card-image
+          src="assets/images/wcc/bg.jpg"
+          alt="bg"
+          style="max-height: 170px;"
+        />
+        <mat-card-content>
+          <div class="pro-img">
+            <img src="{{ profile?.Avatar != '' && profile?.Avatar != null ? profile?.Avatar : 'assets/images/users/default.jpg' }}" width="100" alt="user" style="border: solid 3px white;" />
+          </div>
+          <h3 class="m-b-0">{{ profile?.FirstName + ' ' + profile?.LastName }}</h3>
+          <h6 class="m-t-0">{{ accountJobProfile?.Position }}</h6>
+ 
+       
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Card column -->
+    <!-- Card column -->
+    <div fxFlex.gt-sm="75" fxFlex="100" *ngIf="account?.AccountType == 'Alumni'">
+      <mat-card>
+        <mat-tab-group> 
+          <!-- Tab 2 -->
+          <mat-tab label="Profile">
+            <mat-card-content>
+              <mat-card-title>Account</mat-card-title>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form"  > 
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field appearance="fill">
+                      <mat-label>Student No.</mat-label>
+                        <input
+                            matInput 
+                            [value]="account?.ReferenceNbr"
+                            readonly  
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    
+                    <mat-form-field appearance="fill">
+                      <mat-label>Batch Yr</mat-label>
+                      <input
+                          matInput 
+                          [value]="account?.BatchYr"
+                          readonly  
+                      />
+
+                    </mat-form-field> 
+
+                  </div>       
+                  
+         
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-checkbox class="example-margin" [checked]="account?.IsVerified ? true : false" disabled>Is Verified</mat-checkbox>
+
+                  </div>       
+                  
+ 
+                </div>
+
+ 
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field appearance="fill"> 
+                      <mat-label>Last Name</mat-label>
+                      <input
+                          matInput 
+                          [value]="account?.profile?.LastName"
+                          readonly  
+                      />
+                    </mat-form-field>  
+
+                  </div> 
+ 
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field appearance="fill"> 
+                      <mat-label>First Name</mat-label>
+                      <input
+                          matInput 
+                          [value]="account?.profile?.FirstName"
+                          readonly  
+                      />
+                    </mat-form-field>  
+
+
+
+                  </div> 
+
+
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field appearance="fill"> 
+                      <mat-label>Middle Name</mat-label>
+                      <input
+                          matInput 
+                          [value]="account?.profile?.MiddleName"
+                          readonly  
+                      />
+                    </mat-form-field>  
+
+                  </div> 
+
+
+
+                </div>
+
+
+              </form>
+
+              <mat-card-title>Contact Info</mat-card-title>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form"  [formGroup]="accountForm"> 
+ 
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+
+                  
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field> 
+                      <mat-label>Contact No</mat-label>
+                      <input
+                          matInput 
+                          formControlName="ContactNo" 
+                      />
+
+                    </mat-form-field>  
+
+                  </div> 
+   
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field> 
+                      <mat-label>Email</mat-label>
+                      <input
+                          matInput 
+                          formControlName="Email" 
+                      />
+
+                    </mat-form-field>  
+
+                  </div> 
+ 
+                </div>
+ 
+
+                <div fxLayout="row wrap">
+
+               
+               
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <button mat-raised-button color="primary" (click)="updateAccount()">Save Info</button>
+                  </div>
+
+                </div>
+
+              </form>
+
+         
+
+            </mat-card-content>
+          </mat-tab>
+
+          <mat-tab label="Job">
+            <mat-card-content>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form" [formGroup]="jobProfileForm"> 
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field>
+                      <mat-label>Company</mat-label>
+                        <input
+                            matInput 
+                            formControlName="Company"
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                  <div fxFlex.gt-sm="70" fxFlex="100" class="p-10">
+
+                    
+                    <mat-form-field>
+                      <mat-label>Company Address</mat-label>
+                      <input
+                          matInput 
+                          formControlName="CompanyAddress"
+                      />
+
+                    </mat-form-field> 
+
+                  </div>       
+                                    
+ 
+                </div>
+
+ 
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-checkbox  formControlName="IsYourJobRelated">Is Your Job Related?</mat-checkbox>
+
+                  </div> 
+  
+
+                </div>
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                      <mat-label>{{ jobProfileForm.get('IsYourJobRelated')?.value ? 'Position' : 'Please specify other position' }}</mat-label>
+                        <input
+                            matInput  
+                            formControlName="Position"
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                      <mat-select placeholder="No. of Yrs" formControlName="NoOfYrs">
+                          <mat-option value="N/A">N/A</mat-option>
+                          <mat-option value="Less than 1 year">Less than 1 year</mat-option>
+                          <mat-option value="1-3 years">1-3 years</mat-option>
+                          <mat-option value="4-5 years">4-5 years</mat-option>
+                          <mat-option value="6 year and above">6 year and above</mat-option>
+                      </mat-select>
+                  </mat-form-field> 
+
+
+
+                  </div>
+
+
+
+                </div>
+
+                <div fxLayout="row wrap">
+
+               
+               
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <button mat-raised-button color="primary" (click)="updateJobProfile()">Save Job Profile</button>
+                  </div>
+
+                </div>
+
+              </form>
+
+              
+            </mat-card-content>
+          </mat-tab>
+ 
+        
+          <mat-tab label="Settings">
+            <mat-card-content>
+              <mat-card-title>Change Password</mat-card-title>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form" [formGroup]="changePasswordForm">
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="Old Password" 
+                          formControlName="TryOldPassword"
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+                
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="New Password" 
+                          formControlName="NewPassword"
+                      />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="Re-try Password" 
+                          formControlName="RetryPassword"
+                      />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+
+                <div fxLayout="row wrap">
+
+               
+               
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
+                  </div>
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-tab>
+
+        </mat-tab-group>
+      </mat-card>
+
+
+  
+    </div>
+
+
+
+    <div  fxFlex.gt-sm="75" fxFlex="100" *ngIf="account?.AccountType == 'Admin'">
+      <mat-card>
+        <mat-tab-group> 
+          <!-- Tab 2 -->
+          <mat-tab label="Profile">
+            <mat-card-content>
+              <mat-card-title>Details about you</mat-card-title>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form"> 
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field appearance="fill">
+                      <mat-label>Admin No.</mat-label>
+                        <input
+                            matInput 
+                            placeholder="Admin No." 
+                            [value]="account.ReferenceNbr"
+                            readonly
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+
+ 
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field  appearance="fill">
+                      <mat-label>Last Name</mat-label>
+                        <input
+                          matInput
+                          placeholder="Last Name"
+                          [value]="profile.LastName"
+                          readonly
+                        />
+                    </mat-form-field>  
+                  </div> 
+ 
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field  appearance="fill">
+                      <mat-label>First Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="First Name"
+                        [value]="profile.FirstName"
+                        readonly
+                    />
+                    </mat-form-field>  
+                  </div> 
+
+
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+ 
+                    <mat-form-field  appearance="fill">
+                      <mat-label>Middle Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Middle Name"
+                        [value]="profile.MiddleName"
+                        readonly
+                    />
+                    </mat-form-field>  
+                  </div> 
+
+
+
+                </div>
+
+
+              </form>
+
+
+             
+            </mat-card-content>
+          </mat-tab>
+
+          <mat-tab label="Settings">
+            <mat-card-content>
+              <mat-card-title>Change Password</mat-card-title>
+              <!-- ============================================================== -->
+              <!-- column -->
+              <!-- ============================================================== -->
+              <form class="basic-form" [formGroup]="changePasswordForm">
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="Old Password" 
+                          formControlName="TryOldPassword"
+                        />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+                
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="New Password" 
+                          formControlName="NewPassword"
+                      />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+
+                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+
+                    <mat-form-field >
+                        <input
+                          matInput
+                          type="password"
+                          placeholder="Re-try Password" 
+                          formControlName="RetryPassword"
+                      />
+                    </mat-form-field>
+
+
+                  </div>
+
+                
+                </div>
+
+                <div fxLayout="row wrap">
+
+               
+               
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <button mat-raised-button color="primary" (click)="changePassword()" [disabled]="!changePasswordForm.valid">Change Password</button>
+                  </div>
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-tab>
+
+
+        </mat-tab-group>
+      </mat-card>
+      
+    </div>
+  </div>

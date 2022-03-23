@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Account } from '../model/account.model';
+import { LocalStoreService } from '../service/local-store.service';
 
 export interface BadgeItem {
   type: string;
@@ -24,7 +26,7 @@ export interface Menu {
   children?: ChildrenItems[];
 }
 
-const MENUITEMS = [
+const ADMIN_MENUITEMS = [
   {
     state: 'home',
     name: 'Home',
@@ -50,25 +52,48 @@ const MENUITEMS = [
       },
       {
         state : "list",
-        name : "Alumni Record",
+        name : "Alumni List",
         type : "link",
       },
 
     ]
   }, 
   {
-    state: 'profile/admin-profile',
-    name: 'Profile',
+    state: 'import',
+    name: 'Import',
     type: 'link',
-    icon: 'account_circle',
+    icon: 'download',
   },
   
 ];
 
-
+const MENUITEMS = [
+  {
+    state: 'home',
+    name: 'Home',
+    type: 'link',
+    icon: 'home',
+  },
+  {
+    state: 'announcement',
+    name: 'Announcement',
+    type: 'link',
+    icon: 'announcement',
+  },    
+];
 @Injectable()
 export class HorizontalMenuItems {
+
+  constructor(readonly store : LocalStoreService){}
+
+  account !: Account;
+
   getMenuitem(): Menu[] {
-    return MENUITEMS;
+ 
+    this.account = this.store.getItem('account'); 
+
+    return this.account?.AccountType == 'Admin' ? ADMIN_MENUITEMS : MENUITEMS;
   }
+
+  
 }

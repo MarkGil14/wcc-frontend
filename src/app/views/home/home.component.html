@@ -1,9 +1,5 @@
 
-
-
-
-
-				
+ 
 			<mat-carousel
 				timings="250ms ease-in"
 				[autoplay]="true"
@@ -27,4 +23,88 @@
 					style="width: 200% !important;"
 				></mat-carousel-slide>
 			</mat-carousel>
+
+
+
+			<div fxLayout="row wrap" *ngIf="account.AccountType == 'Admin'">
+				<div fxFlex="100">
+				  <mat-card>
+					<mat-card-content>
+					  <div fxLayout="row wrap" class="align-items-center">
+			
 						
+			
+			
+						<div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100" >
+							<mat-form-field>
+								<mat-select placeholder="Batch Graduated" [(ngModel)]="BatchYr" (selectionChange)="filterStudents()">
+									<mat-option value=""></mat-option>
+									<mat-option value="2015-2016">2015-2016</mat-option>
+									<mat-option value="2016-2017">2016-2017</mat-option>
+									<mat-option value="2017-2018">2017-2018</mat-option>
+									<mat-option value="2018-2019">2018-2019</mat-option>
+									<mat-option value="2019-2020">2019-2020</mat-option>
+									<mat-option value="2020-2021">2020-2021</mat-option>
+								</mat-select>
+							</mat-form-field> 
+						</div>
+			  
+			
+						<div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100">
+						  <mat-form-field>
+							<input matInput class="p-b-0" placeholder="Search here..." [(ngModel)]="searchText" />
+						  </mat-form-field>
+						</div>
+			
+						 <!-- <div fxFlex.gt-md="50" class="text-right">
+							<button mat-raised-button (click)="exportExcel()" color="primary">
+								Export Excel
+							</button>
+						</div> -->
+				   
+					  </div>
+					</mat-card-content>
+				  </mat-card>
+				</div>
+			</div>
+			<div fxLayout="row wrap"  *ngIf="account.AccountType == 'Admin'">
+			<div
+				fxFlex.gt-lg="25"
+				fxFlex.gt-md="33.33"
+				fxFlex.gt-xs="50"
+				fxFlex="100"
+				*ngFor="let student of students | filter: searchText"
+			>
+				
+				<mat-card>
+					<mat-card-content class="text-center">
+						<img src="{{ student.profile?.Avatar != '' && student.profile?.Avatar != null ? student.profile?.Avatar : 'assets/images/users/default.jpg' }}" class="img-circle border p-1" width="100" />
+						<h4 class="card-title m-t-15 m-b-0">{{ student.profile.FirstName + ' ' + student.profile.LastName }}</h4>
+						<small class="text-muted">{{ student.profile?.job_profiles[0]?.Position ? student.profile.job_profiles[0].Position : 'No Job Application' }}</small>
+						<div class="m-t-20">
+						<button mat-raised-button color="accent" (click)="viewStudent(student.id)">View</button>
+						</div>
+						<div class="m-t-20">
+						<span>
+							<i class="fa fa-envelope m-r-10"></i>{{ student.Email != null &&  student.Email != ''? student.Email : 'N/A' }}                
+							<br />
+							<i class="fa fa-phone m-r-10"></i>{{ student.ContactNo != null && student.ContactNo != '' ? student.ContactNo : 'N/A' }}</span
+						>
+						</div>
+					</mat-card-content> 
+
+				   <div fxLayout="row wrap" class="text-center bg-light border-top">
+						<div fxFlex.gt-xs="50" fxFlex="50" class="p-t-10 p-b-10">
+							<i class="fa fa-user m-r-10 m-t-0 m-b-5"></i>  {{ student.ReferenceNbr != null &&  student.ReferenceNbr != ''? student.ReferenceNbr : 'N/A' }}
+						</div>
+
+						<div fxFlex.gt-xs="50" fxFlex="50" class="p-t-10 p-b-10">
+							<i class="fa fa-calendar m-r-10 m-t-0 m-b-5"></i> {{ student.BatchYr != null &&  student.BatchYr != ''? student.BatchYr : 'N/A' }}
+						</div>
+
+					</div> 
+
+				</mat-card>
+			</div>
+			</div>
+			  

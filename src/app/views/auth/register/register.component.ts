@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
     const account : Account = {
         id : null, //make it null, to indicates that this record is for new account
         ReferenceNbr : this.form1.get('ReferenceNbr')?.value,
-        AccountType : 'alumni', 
+        AccountType : 'Alumni', 
         BatchYr : this.form1.get('BatchYr')?.value,
         ContactNo : this.form1.get('COntactNo')?.value,
         Email : this.form1.get('Email')?.value,
@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
       id : null,
       Company : this.form2.get('Company')?.value,
       CompanyAddress : this.form2.get('CompanyAddress')?.value,
-      isYourJobRelated : this.form2.get('isYourJobRelated')?.value,
+      IsYourJobRelated : this.form2.get('IsYourJobRelated')?.value,
       Position : this.form2.get('Position')?.value,
       NoOfYrs : this.form2.get('NoOfYrs')?.value
 

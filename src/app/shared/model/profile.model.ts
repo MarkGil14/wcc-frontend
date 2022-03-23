@@ -26,7 +26,7 @@ export class Profile {
     Avatar ?: string;
 
 
-    job_profile ?: JobProfile;
+    job_profiles ?: JobProfile[];
 
 
 

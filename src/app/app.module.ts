@@ -33,6 +33,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
 import { AppLandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+ 
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,7 +56,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     VerticalAppSidebarComponent,
     AppBreadcrumbComponent,
     HorizontalAppHeaderComponent,
-    HorizontalAppSidebarComponent,
+    HorizontalAppSidebarComponent, 
   ],
   imports: [
     BrowserModule,
@@ -68,7 +69,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     NgMultiSelectDropDownModule.forRoot(),
     RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

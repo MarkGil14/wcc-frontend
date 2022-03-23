@@ -3,7 +3,7 @@ export class JobProfile {
      
     id !: any;
  
-    ProfileID ?: any;
+    profileId ?: any;
 
 
  
@@ -13,7 +13,7 @@ export class JobProfile {
     CompanyAddress !: string;
 
  
-    isYourJobRelated !: boolean;
+    IsYourJobRelated !: boolean;
 
  
     Position !: string;
