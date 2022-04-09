@@ -68,6 +68,16 @@ export class AnnouncementService {
     }
 
 
+    findOne(id : any) : Observable<any> {
+
+        return this.http.get(`${environment.api.announcement}/${id}`, httpOptions)
+        .pipe(retry(0));  
+
+    }
+
+ 
+
+
 
 }
 

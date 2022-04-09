@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Account } from 'src/app/shared/model/account.model';
 import { Announcement } from 'src/app/shared/model/announcement.model';
 import { Profile } from 'src/app/shared/model/profile.model';
@@ -61,6 +62,7 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
       public dialog: MatDialog, 
       private announcementService : AnnouncementService, 
       public snackBar: MatSnackBar, 
+      readonly router : Router
     ) { 
 
       super()
@@ -217,6 +219,13 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
 
     }
 
+
+
+    readAnnouncement(id : any) {
+
+        this.router.navigateByUrl(`app/announcement/read?id=${id}`)
+
+    }
 
  
  

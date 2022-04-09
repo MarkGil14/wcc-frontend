@@ -7,13 +7,15 @@ import { AnnouncementRoutingModule } from './announcement-routing.module';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFileUploadModule } from 'angular-material-fileupload';
+import { AnnouncementReadComponent } from './announcement-read.component';
 
 
 
 @NgModule({
   declarations: [
     AnnouncementComponent,
-    AnnouncementDialogComponent
+    AnnouncementDialogComponent,
+    AnnouncementReadComponent
   ],
   imports: [
     CommonModule,

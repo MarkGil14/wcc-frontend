@@ -78,4 +78,12 @@ export class HomeComponent extends BaseCustomComponent implements OnInit {
 
   }
 
+  viewStudent(id : any){
+
+    this.router.navigateByUrl(`/app/student/view?id=${id}`)
+
+  }
+
+
+
 }
