@@ -73,9 +73,9 @@ export class AnnouncementReadComponent extends BaseCustomComponent implements On
       }
 
 
-      previewContent(content : any) {
-        return JSON.parse(content)
-      }
+      // previewContent(content : any) {
+      //   return JSON.parse(content)
+      // }
 
 
 
