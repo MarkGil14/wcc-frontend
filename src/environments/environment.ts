@@ -8,6 +8,7 @@ export const environment = {
     authentication: 'wcc-api/auth',
     announcement: 'wcc-api/announcement',
     student: 'wcc-api/student',
+    job: 'wcc-api/job',
   }
 };
 

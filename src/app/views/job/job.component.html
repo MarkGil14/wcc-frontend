@@ -1,93 +1,316 @@
-<mat-card>
-    <mat-card-content>
-      <mat-card-header class="bg-success text-white">
-        <mat-card-title>
-          <button (click)="mailnav.toggle()" mat-icon-button>
-            <mat-icon>menu</mat-icon>
-          </button>
-          Job
-        </mat-card-title>
-      </mat-card-header>
-      <mat-sidenav-container
-        class="email-box"
-        [ngClass]="{ 'side-panel-opened': sidePanelOpened, 'side-panel-closed': !sidePanelOpened }"
-      >
-        <mat-sidenav
-          #mailnav
-          [mode]="isOver() ? 'over' : 'side'"
-          [opened]="!isOver()"
-          (open)="sidePanelOpened = true"
-          (close)="sidePanelOpened = false"
-          class="mail-sidebar"
-          [perfectScrollbar]="config"
-          [disabled]="isOver()"
-          class="email-sidebar"
-        >
-          <div
-            *ngFor="let message of messages; let i = index"
-            [class.selected]="message === selectedMessage"
-          >
-            <div (click)="onSelect(message)">
-              <div class="d-flex">
-                <div class="icon-avatar">
-                  <img alt="" class="avatar" src="{{ message.avatar }}" *ngIf="!message.icon" />
-                </div>
-                <div>
-                  <div class="mail-title" fxShow="false" fxShow.gt-xs style="min-width: 120px">
-                    <span>{{ message.subject }}</span>
-                  </div>
-                  <div class="text-ellipsis">
-                    <span class="text-muted">{{ message.from }}</span>
-                  </div>
-                  <div
-                    class="pl-1 text-xs-right text-ellipsis hide-on-open"
-                    fxShow="false"
-                    fxShow.gt-sm
-                  >
-                    <small class="text-muted">{{ message.date | date: 'yyyy-MM-dd' }}</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-sidenav>
-  
-        <div #mailcontent class="main-content" fxLayout="row" fxLayoutAlign="center start">
-          <div class="messages-list" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-            <div class="card-body" *ngIf="selectedMessage">
-              <div class="email-right-panel">
+<div fxLayout="row wrap">
 
-                <img mat-card-image src="assets/images/big/img3.jpg" alt="Company Banner" style="max-height: 200px !important" />
-                
-                <div class="d-flex align-items-center m-b-30">
-                  <div class="avatar-detail">
-                    <img alt="" class="avatar-lg rounded-circle" src="{{ selectedMessage.avatar }}" />
-                  </div>
-                  <div class="p-l-20">
-                    <h4 class="font-medium m-b-0">
-                      {{ selectedMessage.from }} 
-                    </h4>
-                    <span class="font-14"> {{ selectedMessage.email }}</span>
-                    <br />
-                    <label class="label label-{{ selectedMessage.type }}">{{
-                      selectedMessage.tag
-                    }}</label>
+    <div fxFlex.gt-sm="100" fxFlex="100" *ngIf="account?.AccountType == 'Admin'">
 
+      <mat-card>
 
+        <mat-card-content> 
+                  
+              <form [formGroup]="jobForm">
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Job Title" formControlName="JobTitle" />
+                    </mat-form-field>
                   </div>
-                </div>
-                <h4 class="lead mt-0 m-b-30">{{ selectedMessage.subject }}</h4>
-                <div [innerHtml]="selectedMessage.body"></div>
+                  <!-- column -->
           
+                </div>
+    
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="33" fxFlex="33" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Company" formControlName="Company" />
+                    </mat-form-field>
+                  </div>
+                  <!-- column -->
+                  <div fxFlex.gt-sm="67" fxFlex="67" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Location" formControlName="Location" />
+                    </mat-form-field>
+                  </div>
+                </div>
+    
+
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+
+                  <div fxFlex.gt-sm="25" fxFlex="25" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Career Level" formControlName="CarrerLevel" />
+                    </mat-form-field>
+                  </div>
+  
+                  
+
+                  <div fxFlex.gt-sm="25" fxFlex="25" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Qualification" formControlName="Qualification" />
+                    </mat-form-field>
+                  </div>
+
+                  <!-- column -->
+                  <div fxFlex.gt-sm="25" fxFlex="25" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Job Type" formControlName="JobType" />
+                    </mat-form-field>
+                  </div>                  
+
+                  <div fxFlex.gt-sm="25" fxFlex="25" class="p-10">
+                    <mat-form-field>
+                      <input matInput placeholder="Years Of Exp." formControlName="YrsOfExp" />
+                    </mat-form-field>
+                  </div>                
+
+
+                </div>
+
+       
+ 
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+
+                  <div fxFlex.gt-sm="30" fxFlex="30" class="p-10">
+
+                      <div class="form-group">
+                        <label>Company Logo</label>
+                        <input  
+                            id="file" 
+                            type="file" 
+                            class="form-control"
+                            accept=".jpg,.png,.jpeg"
+                            [value]="companyLogo"
+                            (change)="onFileChangeLogo($event)">
+                             
+
+                        <div>
+                          <!-- <img *ngFor="let img of announcement_images_preview" [src]="img" style="max-width: 100px;max-height: 150px;margin:5px;"> -->
+                        </div>                        
+                    </div>
+                  </div>
+
+                  <div fxFlex.gt-sm="70" fxFlex="70" class="p-10">
+
+                      <div class="form-group">
+                        <label>Company Banner</label>
+                        <input  
+                            id="file" 
+                            type="file" 
+                            class="form-control"
+                            accept=".jpg,.png,.jpeg"
+                            [value]="companyBanner"
+                            (change)="onFileChangeBanner($event)">
+                        <div>
+                          <!-- <img *ngFor="let img of announcement_images_preview" [src]="img" style="max-width: 100px;max-height: 150px;margin:5px;"> -->
+                        </div>                        
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <quill-editor formControlName="JobDescription" [style]="{ height: '200px' }"  ></quill-editor>
+                  </div>
+                </div> 
+
+
+ 
+            
+ 
+
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="mini-spacer" *ngIf="!editMode">
+                    <button mat-raised-button color="primary" (click)="onPostJob()">Post</button>
+
+                  </div>
+
+                  <div fxFlex.gt-sm="100" fxFlex="100" class="mini-spacer" *ngIf="editMode">
+                    <button mat-raised-button color="warn" (click)="cancelEdit()">Cancel Edit</button>
+                    <button mat-raised-button color="primary" (click)="onPostJob()">Save Changes</button>  
+                  </div>
+
+
+
+                </div>
+
+
+
+ 
+
+
+              </form>
+      
+        </mat-card-content>
+
+      </mat-card>
+
+      
+      
+
+    </div>
+
+    <div fxFlex.gt-sm="100" fxFlex="100" >
+
+
+      <mat-card>
+          <mat-card-content> 
+            <mat-sidenav-container
+              class="email-box"
+              [ngClass]="{ 'side-panel-opened': sidePanelOpened, 'side-panel-closed': !sidePanelOpened }"
+            >
+              <mat-sidenav
+                #mailnav
+                [mode]="isOver() ? 'over' : 'side'"
+                [opened]="!isOver()"
+                (open)="sidePanelOpened = true"
+                (close)="sidePanelOpened = false"
+                class="mail-sidebar"
+                [perfectScrollbar]="config"
+                [disabled]="isOver()"
+                class="email-sidebar"
+              >
+              
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <div fxFlex.gt-md="100" fxFlex.gt-lg="100" fxFlex="100">
+                    <mat-form-field>
+                      <input matInput class="p-b-0" placeholder="Search Job..." [(ngModel)]="searchJob" />
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <div
+                  *ngFor="let job of jobs | filter: searchJob"
+                  [class.selected]="job === selectedJob"
+                >
+                  <div (click)="onSelect(job)">
+                    <div class="d-flex" style="border-bottom: 1px solid #d8d8d6;">
+                      <div class="icon-avatar">
+                        <img alt="" loading="lazy" class="avatar" src="{{ job?.CompanyLogo != '' && job?.CompanyLogo != null ? job?.CompanyLogo : 'assets/images/users/company-default.jpg' }}"  />
+                      </div>
+                      <div>
+                        <div class="mail-title" fxShow="false" fxShow.gt-xs style="min-width: 120px">
+                          <span>{{ job.JobTitle }} 
+            
+                        
+                        </span>
+                        
+                        </div>
+                        <div class="text-ellipsis">
+                          <span class="text-muted">{{ job.Company }}</span>
+                        </div>
+                        <div
+                          class="pl-1 text-xs-right text-ellipsis hide-on-open"
+                          fxShow="false"
+                          fxShow.gt-sm
+                        >
+                          <small>  <label class="label label-{{ job.Status == 'Open' ? 'success' : 'danger' }}">{{
+                            job.Status
+                          }}</label> </small>
+                          <small class="pull-right text-muted">{{ job.createdAt | date: 'yyyy-MM-dd' }}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-sidenav>
+        
+              <div #mailcontent class="main-content" fxLayout="row" fxLayoutAlign="center start">
+                <div class="jobs-list" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                  <div class="card-body" *ngIf="selectedJob">
+
+                    <div class="row" *ngIf="account?.AccountType == 'Admin' && selectedJob?.Status != 'Closed'">
+                      <div class="btn-row" style="display:flex;" >
+                        <button mat-button  color="accent" (click)="onSetClose()">Set as Close</button>
+                        <button mat-button  color="primary" (click)="editJob()">Edit</button>
+                        <button mat-button  color="error" (click)="onDelete()">Delete</button>                        
+                      </div>  
+                    </div>
+                        
+                    <div class="email-right-panel">
+
+              
+
+                      <img loading="lazy" mat-card-image src="{{ selectedJob?.JobImage != '' && selectedJob?.JobImage != null ? selectedJob?.JobImage : 'assets/images/users/company-banner.png' }}" alt="Company Banner" style="max-height: 200px !important" />
+                      
+                      <div class="d-flex align-items-center m-b-30 m-t-10">
+                        <div class="avatar-detail">
+                          <img loading="lazy" alt="" class="avatar-lg rounded-circle" src="{{ selectedJob?.CompanyLogo != '' && selectedJob?.CompanyLogo != null ? selectedJob?.CompanyLogo : 'assets/images/users/company-default.jpg' }}" />
+                        </div>
+                        <div class="p-l-20">
+                          <h4 class="font-medium m-b-0">
+                            {{ selectedJob.Company }} 
+                          </h4>
+                          <span class="font-14"> {{ selectedJob.Location }}</span>
+                          <br />
+                          <label class="label label-{{ selectedJob.Status == 'Open' ? 'success' : 'danger' }}">{{
+                            selectedJob.Status
+                          }}</label>
+
+
+                        </div>
+                      </div>
+                      <h4 class="lead mt-0 m-b-30 font-bold"> {{ selectedJob.JobTitle }} </h4>
+
+                      <span class="mt-0 m-b-0 text-muted">{{ selectedJob.createdAt | date : 'MMMM d, y' }}</span>
+
+
+                      <h4 class="lead mt-0 m-b-0 font-bold">Job Description</h4>
+
+                      <div class="m-b-5" [innerHtml]="selectedJob.JobDescription"></div>
+
+
+                      <h4 class="lead mt-0 m-b-0 font-bold">Additional Information</h4>
+
+ 
+                          <mat-list role="list">
+                            <mat-list-item>
+                              <div>
+                                <span class="font-12 font-bold">Career Level: </span>  <small class="font-10">{{ selectedJob.CarrerLevel }} </small>                                  
+                              </div>
+                            </mat-list-item>
+                        
+                            <mat-list-item>
+                              <span class="font-12 font-bold">Job Type: </span> <small class="font-10">{{ selectedJob.JobType }} </small>
+                              
+                            </mat-list-item>
+
+                            <mat-list-item>
+                              <span class="font-12 font-bold">Qualification: </span>  <small class="font-10">{{ selectedJob.Qualification }} </small>
+                             
+                            </mat-list-item>
+                            <mat-list-item>
+                              <span class="font-12 font-bold">Yrs of Exp.: </span>  <small class="font-10">{{ selectedJob.YrsOfExp }} </small>
+                             
+                            </mat-list-item>
+                  
+
+                          </mat-list> 
+  
+                
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </mat-sidenav-container>
-  
-      <!-- <button mat-fab color="warn" class="bottom-right" (click)="openDialog()">
-        <mat-icon class="mat-24">create</mat-icon>
-      </button> -->
-    </mat-card-content>
-  </mat-card>
-  
+            </mat-sidenav-container>
+        
+            <!-- <button mat-fab color="warn" class="bottom-right" (click)="openDialog()">
+              <mat-icon class="mat-24">create</mat-icon>
+            </button> -->
+          </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
+</div>

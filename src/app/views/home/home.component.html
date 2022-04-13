@@ -78,7 +78,7 @@
 				
 				<mat-card>
 					<mat-card-content class="text-center">
-						<img src="{{ student.profile?.Avatar != '' && student.profile?.Avatar != null ? student.profile?.Avatar : 'assets/images/users/default.jpg' }}" class="img-circle border p-1" width="100" />
+						<img src="{{ student.profile?.Avatar }}" class="img-circle border p-1" width="100" />
 						<h4 class="card-title m-t-15 m-b-0">{{ student.profile.FirstName + ' ' + student.profile.LastName }}</h4>
 						<small class="text-muted">{{ student.profile?.job_profiles[0]?.Position ? student.profile.job_profiles[0].Position : 'No Job Application' }}</small>
 						<div class="m-t-20">

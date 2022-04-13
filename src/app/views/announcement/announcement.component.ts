@@ -79,6 +79,7 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
   announcementForm : FormGroup = Object.create(Announcement);
 
 
+  editMode : boolean = false;
 
   announcements : Announcement[] = [];
 
@@ -88,6 +89,7 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
 
 
     this.announcementForm = new FormGroup({      
+      id : new FormControl(''),
       Title : new FormControl('', [Validators.required]),
       Description : new FormControl('', [Validators.required]),
       Author : new FormControl('', [Validators.required]),
@@ -205,7 +207,8 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
           // this.announcements.unshift(result);
 
           this.loadAnnouncements();
-
+          this.editMode = false;
+          
           this.announcementForm.reset();
           this.announcementForm.markAsPristine();
           this.announcment_images_preview = [];
@@ -227,7 +230,43 @@ export class AnnouncementComponent extends BaseCustomComponent implements OnInit
 
     }
 
+
+
+    onEdit(announcement : any) {
+
+      this.editMode = true;
+      this.announcementForm.patchValue(announcement);
+
+    }
  
+    cancelEdit() {
+
+      this.editMode = false;
+      this.announcementForm.reset();
+      this.announcementForm.markAsPristine();
+
+    }
  
+
+    
+  onDelete(id : any) {
+
+    this.announcementService.deleteAnnouncement(id).subscribe(data => {
+
+      this.snackBar.open('Announcement was Successfully Deleted', 'Close', {
+        duration: 2000,
+        horizontalPosition : 'right',
+        verticalPosition : 'top'
+      });
+
+      const index = this.announcements.findIndex(e => e.id == id);
+      if(index) {
+        this.announcements.splice(index, 1);
+      }
+
+    });
+
+  }
+
 
 }

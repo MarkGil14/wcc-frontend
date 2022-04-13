@@ -41,7 +41,6 @@ export class AnnouncementService {
  
 
     saveAnnouncement(announcement : Announcement) : Observable<any> {
-        console.log(announcement);
         return this.http.post(`${environment.api.announcement}`, announcement , httpOptions)
         .pipe(retry(0));  
 
@@ -49,6 +48,13 @@ export class AnnouncementService {
 
  
 
+    deleteAnnouncement(id : any) : Observable<any> {
+        return this.http.delete(`${environment.api.announcement}/${id}`, httpOptions)
+        .pipe(retry(0));  
+
+    }
+
+ 
     saveAnnouncementImages(announcementId : any, files : any) : Observable<any> {
  
           

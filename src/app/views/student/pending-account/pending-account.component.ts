@@ -2,6 +2,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { Account } from "src/app/shared/model/account.model";
 import { StudentService } from "src/app/shared/service/student.service";
 import { ViewPendingAccountComponent } from "./view-pending-account.component";
@@ -16,7 +17,9 @@ export class PendingAccountComponent implements OnInit {
 
 
     rows : Account[] = [];
-    temp = [];
+    temp : any[] = [];
+
+    searchAccount : any;
 
     columns = [
         { prop: 'ReferenceNbr', name : 'Reference Nbr' }, 
@@ -48,7 +51,7 @@ export class PendingAccountComponent implements OnInit {
     
     
     }
-   
+
  
 
     /**
@@ -56,7 +59,7 @@ export class PendingAccountComponent implements OnInit {
      */
     loadAllPendingAccount() {
         this.studentService.getPendingAccount().subscribe(data => {
-            console.log(data)
+            this.temp = [...data];            
             this.rows = data;
 
             setTimeout(() => {
@@ -110,6 +113,30 @@ export class PendingAccountComponent implements OnInit {
     })
 
   }
+
+  @ViewChild(DatatableComponent) table !: DatatableComponent;
+ 
+    updateFilter(event : any) {
+
+        const val = event.target.value.toLowerCase();
+
+        // filter our data
+        const temp = this.temp.filter(function (d : any) {
+            console.log(d)
+        return d.profile.FirstName.toLowerCase().indexOf(val) !== -1 
+        || d.profile.LastName.toLowerCase().indexOf(val) !== -1 
+        || d.ReferenceNbr.toLowerCase().indexOf(val) !== -1 
+        || d.BatchYr.toLowerCase().indexOf(val) !== -1 
+        || !val;
+        });
+
+        console.log(temp)
+
+        // update the rows 
+        this.rows = temp;
+        // Whenever the filter changes, always go back to the first page
+        this.table.offset = 0;
+    }
 
 
 

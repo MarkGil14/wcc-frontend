@@ -22,9 +22,7 @@ export class StudentService {
 
     constructor(
         private readonly http: HttpClient,
-        private readonly _router: Router,
     ) { 
-
 
     }
 
@@ -80,7 +78,21 @@ export class StudentService {
 
     }
 
+    
+    uploadAvatar(id : any, file : any) : Observable<any> {
 
+        return this.http.post(`${environment.api.student}/change-avatar/${id}`, file)
+        .pipe(retry(0));  
+
+    }
+
+   
+    getImage(filename : string) : Observable<any> {
+           
+        return this.http.get(`${environment.api.announcement}/image/${filename}`, { responseType: 'blob' })
+        .pipe(retry(0));  
+
+    }
 
 }
 

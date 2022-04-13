@@ -71,8 +71,32 @@ export class HomeComponent extends BaseCustomComponent implements OnInit {
 
     this.studentService.getAlumniFilter(query).subscribe(data => {
         
+
+        for (let index = 0; index < data.length; index++) {
+          const student = data[index];
+
+          if(student.profile.Avatar)
+              this.studentService.getImage(student.profile.Avatar).subscribe(imgPath => {
+              
+                let reader = new FileReader();
+              
+                student.profile.Avatar =  reader.readAsDataURL(imgPath);
+
+                reader.onload = _event => {
+                  student.profile.Avatar = reader.result; //image declared earlier
+                };
+
+              })
+          else {
+            student.profile.Avatar =  'assets/images/users/default.jpg';
+
+          }
+
+
+        }
+
         this.students = data;
-        console.log(this.students)
+
     })
 
 

@@ -37,6 +37,11 @@ export const AppRoutes: Routes = [
         loadChildren: () =>
           import('./views/student/student.module').then((m) => m.StudentModule),
       },
+      {
+        path: 'search',
+        loadChildren: () =>
+          import('./views/search/search.module').then((m) => m.SearchModule),
+      },
 
       {
         path: 'profile',

@@ -6,30 +6,31 @@
           <mat-card-content>
           <mat-toolbar class=" no-shadow chat-right-panel">
             <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
-              <span class="top-avatar m-r-10">
+              <!-- <span class="top-avatar m-r-10">
                 <img src="assets/images/users/admin.jpg" class="img-circle" />
-              </span>
+              </span> -->
               <div fxFlex>
-                <h3 matLine>Admin
+                <h3 matLine>
                   <small class="text-muted font-10">{{ announcement?.DatePublish | date : 'MMMM d, y'}}</small>  
                 </h3>
    
   
               </div>
   
-              <button [matMenuTriggerFor]="them" mat-icon-button class="ml-1"  *ngIf="account?.AccountType == 'Admin'">
+              <!-- <button [matMenuTriggerFor]="them" mat-icon-button class="ml-1"  *ngIf="account?.AccountType == 'Admin'">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #them="matMenu" x-position="before">
                 <button mat-menu-item>Edit</button>
                 <button mat-menu-item>Delete</button>
-              </mat-menu>
+              </mat-menu> -->
             </div>
           </mat-toolbar>
   
    
   
-            <img mat-card-image  loading="lazy" *ngIf="announcement?.announcement_images.length > 0"  src="{{ announcement?.announcement_images[0].ImageUrl }}" alt="announcement image" />
+
+            <img mat-card-image  loading="lazy" *ngIf="announcement?.announcement_images.length > 0"  src="{{ announcement?.announcement_images[announcement?.announcement_images.length - 1].ImageUrl }}" alt="announcement image" style="max-height: 560px;"/>
       
               <div class="text-center m-t-10">
                   <mat-card-title>{{ announcement?.Title }}</mat-card-title>

@@ -40,6 +40,12 @@ const ADMIN_MENUITEMS = [
     icon: 'announcement',
   },
   {
+    state: 'job',
+    name: 'Job',
+    type: 'link',
+    icon: 'work',
+  },
+  {
     state: 'student',
     name: 'Alumni',
     type: 'sub',
@@ -80,6 +86,12 @@ const MENUITEMS = [
     type: 'link',
     icon: 'announcement',
   },    
+  {
+    state: 'job',
+    name: 'Job',
+    type: 'link',
+    icon: 'work',
+  },
 ];
 @Injectable()
 export class HorizontalMenuItems {

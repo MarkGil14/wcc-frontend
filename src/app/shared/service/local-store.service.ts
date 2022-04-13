@@ -9,6 +9,7 @@ export class LocalStoreService {
   constructor() { }
 
   public setItem(key : any, value : any) {
+    console.log(value)
     value = JSON.stringify(value);
     if (key.toLowerCase() == 'accesstoken') {
       this.ls.setItem(key, value.replace(/['"]+/g, ''));

@@ -9,6 +9,7 @@ import { RegisterAlumniDto } from "../dto/register-alumni.dto";
 import { LoginResponse } from "../model/login-response";
 import { httpOptions } from "./http-options";
 import { LocalStoreService } from "./local-store.service";
+import { StudentService } from "./student.service";
 
  
   
@@ -22,7 +23,8 @@ export class AuthService {
     constructor(
         private readonly http: HttpClient,
         private readonly _router: Router,
-        private readonly store : LocalStoreService
+        private readonly store : LocalStoreService,
+        readonly studentService : StudentService
     ) { 
 
 
@@ -54,9 +56,39 @@ export class AuthService {
         this.store.setItem('accessToken', loginResponse.token);
         this.store.setItem('accountType', loginResponse.account?.AccountType);
         this.store.setItem('account', loginResponse.account);
-        this.store.setItem('profile', loginResponse.profile);
     
         this.store.setItem('loginAuth', loginResponse); 
+
+        const profile = loginResponse.profile;
+
+        
+        if(profile?.Avatar)
+        this.studentService.getImage(profile.Avatar).subscribe(imgPath => {
+
+                let reader = new FileReader();
+                
+                profile.Avatar = reader.readAsDataURL(imgPath);
+        
+                reader.onload = _event => {
+                    profile.Avatar = reader.result; //image declared earlier
+                    this.store.setItem('profile', profile);                    
+    
+                };
+         
+
+        });
+        else {
+
+
+            profile.Avatar = 'assets/images/users/default.jpg';
+            this.store.setItem('profile', profile);
+
+        }
+
+
+
+
+
     
       }
     

@@ -27,6 +27,9 @@ export class UserProfileComponent  extends BaseCustomComponent  implements OnIni
 
   accountJobProfile !: JobProfile;
 
+ 
+  avatarFile : any;
+
   constructor(
 
     readonly studentService : StudentService,
@@ -76,6 +79,13 @@ export class UserProfileComponent  extends BaseCustomComponent  implements OnIni
       NewPassword : newPassword,
       RetryPassword : new FormControl('', [Validators.required, CustomValidators.equalTo(newPassword)]),
     })
+
+
+
+    console.log(this.profile)
+
+
+
 
   }
 
@@ -217,5 +227,60 @@ export class UserProfileComponent  extends BaseCustomComponent  implements OnIni
 
 
   }
+
+  onFileChangeAvatar(event : any) {
+
+    for (var i = 0; i < event.target.files.length; i++) { 
+      this.avatarFile = event.target.files[i];         
+    }
+
+  }
+
+
+
+  
+  changeAvatar() { 
+
+    const formDataAvatar = new FormData(); 
+    formDataAvatar.append("file", this.avatarFile);      
+ 
+    this.studentService.uploadAvatar(this.profile.id, formDataAvatar).subscribe((data) => {
+ 
+      this.snackBar.open('Your Profile Picture was Successfully Changed', 'Close', {
+        duration: 2000,
+        horizontalPosition : 'right',
+        verticalPosition : 'top'
+      });
+
+      
+      this.profile.Avatar = data.Avatar;
+   
+      this.studentService.getImage(data.Avatar).subscribe(imgPath => {
+
+        let reader = new FileReader();
+
+        if(this.profile.Avatar) {
+          
+          this.profile.Avatar = reader.readAsDataURL(imgPath);
+  
+          reader.onload = _event => {
+            this.profile.Avatar = reader.result; //image declared earlier
+
+            const store = new LocalStoreService()    
+            store.setItem('profile', this.profile);
+    
+          };
+              
+        }
+  
+      });
+
+
+
+    })
+
+  }
+
+
 
 }

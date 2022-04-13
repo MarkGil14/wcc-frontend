@@ -10,7 +10,7 @@
         />
         <mat-card-content>
           <div class="pro-img">
-            <img src="{{ profile?.Avatar != '' && profile?.Avatar != null ? profile?.Avatar : 'assets/images/users/default.jpg' }}" width="100" alt="user" style="border: solid 3px white;" />
+            <img src="{{ profile?.Avatar }}" width="100" alt="user" style="border: solid 3px white;" />
           </div>
           <h3 class="m-b-0">{{ profile?.FirstName + ' ' + profile?.LastName }}</h3>
           <h6 class="m-t-0">{{ accountJobProfile?.Position }}</h6>
@@ -287,78 +287,139 @@
         
           <mat-tab label="Settings">
             <mat-card-content>
-              <mat-card-title>Change Password</mat-card-title>
               <!-- ============================================================== -->
               <!-- column -->
               <!-- ============================================================== -->
-              <form class="basic-form" [formGroup]="changePasswordForm">
 
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+              <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                <!-- column -->
+                <div fxFlex.gt-sm="50" fxFlex="50" class="p-10">
+                  <mat-card-title>Change Password</mat-card-title>
 
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="Old Password" 
-                          formControlName="TryOldPassword"
-                        />
-                    </mat-form-field>
+                  <form class="basic-form" [formGroup]="changePasswordForm">
+
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="Old Password" 
+                              formControlName="TryOldPassword"
+                            />
+                        </mat-form-field>
 
 
-                  </div>
+                      </div>
 
-                
+                    
+                    </div>
+                    
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="New Password" 
+                              formControlName="NewPassword"
+                          />
+                        </mat-form-field>
+
+
+                      </div>
+
+                    
+                    </div>
+
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="Re-try Password" 
+                              formControlName="RetryPassword"
+                          />
+                        </mat-form-field>
+
+
+                      </div>
+
+                    
+                    </div>
+
+                    <div fxLayout="row wrap">
+
+                  
+                  
+                      <div fxFlex.gt-sm="100" fxFlex="100">
+                        <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
+                      </div>
+                    </div>
+
+
+                  </form>
+
                 </div>
-                
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
 
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="New Password" 
-                          formControlName="NewPassword"
-                      />
-                    </mat-form-field>
+                <div fxFlex.gt-sm="50" fxFlex="50" class="p-10">
+
+                  <mat-card-title>Change Profile Picture</mat-card-title>
 
 
-                  </div>
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <form>
 
-                
+                        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                 
+                          <div class="form-group">
+                              <label>Upload you Picture</label>
+                              <input  
+                                  id="file" 
+                                  type="file" 
+                                  class="form-control"
+                                  accept=".jpg,.png,.jpeg"
+                                  (change)="onFileChangeAvatar($event)">                                      
+                              <div>
+                                <!-- <img *ngFor="let img of announcement_images_preview" [src]="img" style="max-width: 100px;max-height: 150px;margin:5px;"> -->
+                              </div>                        
+                          </div>
+  
+  
+                          <div fxLayout="row wrap">
+                    
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                              <button mat-raised-button color="primary" (click)="changeAvatar()">Save Profile Picture</button>
+                            </div>
+                          </div>
+  
+                          
+  
+                        </div>
+  
+                      </form>
+
+                    
+                    </div>
+
+ 
+                                    
                 </div>
 
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="Re-try Password" 
-                          formControlName="RetryPassword"
-                      />
-                    </mat-form-field>
+              </div>
 
 
-                  </div>
 
-                
-                </div>
 
-                <div fxLayout="row wrap">
-
-               
-               
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
-                  </div>
-                </div>
-              </form>
             </mat-card-content>
           </mat-tab>
 
@@ -459,80 +520,143 @@
           </mat-tab>
 
           <mat-tab label="Settings">
+
             <mat-card-content>
-              <mat-card-title>Change Password</mat-card-title>
               <!-- ============================================================== -->
               <!-- column -->
               <!-- ============================================================== -->
-              <form class="basic-form" [formGroup]="changePasswordForm">
 
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
+              <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                <!-- column -->
+                <div fxFlex.gt-sm="50" fxFlex="50" class="p-10">
+                  <mat-card-title>Change Password</mat-card-title>
 
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="Old Password" 
-                          formControlName="TryOldPassword"
-                        />
-                    </mat-form-field>
+                  <form class="basic-form" [formGroup]="changePasswordForm">
+
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="Old Password" 
+                              formControlName="TryOldPassword"
+                            />
+                        </mat-form-field>
 
 
-                  </div>
+                      </div>
 
-                
+                    
+                    </div>
+                    
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="New Password" 
+                              formControlName="NewPassword"
+                          />
+                        </mat-form-field>
+
+
+                      </div>
+
+                    
+                    </div>
+
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                        <mat-form-field >
+                            <input
+                              matInput
+                              type="password"
+                              placeholder="Re-try Password" 
+                              formControlName="RetryPassword"
+                          />
+                        </mat-form-field>
+
+
+                      </div>
+
+                    
+                    </div>
+
+                    <div fxLayout="row wrap">
+
+                  
+                  
+                      <div fxFlex.gt-sm="100" fxFlex="100">
+                        <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
+                      </div>
+                    </div>
+
+
+                  </form>
+
                 </div>
-                
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
 
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="New Password" 
-                          formControlName="NewPassword"
-                      />
-                    </mat-form-field>
+                <div fxFlex.gt-sm="50" fxFlex="50" class="p-10">
+
+                  <mat-card-title>Change Profile Picture</mat-card-title>
 
 
-                  </div>
+                    <div fxLayout="row wrap" fxFlexAlign="center" class="row">
+                      <!-- column -->
+                      <form>
 
-                
+                        <div fxFlex.gt-sm="100" fxFlex="100" class="p-10">
+
+                 
+                          <div class="form-group">
+                              <label>Upload you Picture</label>
+                              <input  
+                                  id="file" 
+                                  type="file" 
+                                  class="form-control"
+                                  accept=".jpg,.png,.jpeg"
+                                  (change)="onFileChangeAvatar($event)">                                      
+                              <div>
+                                <!-- <img *ngFor="let img of announcement_images_preview" [src]="img" style="max-width: 100px;max-height: 150px;margin:5px;"> -->
+                              </div>                        
+                          </div>
+  
+  
+                          <div fxLayout="row wrap">
+                    
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                              <button mat-raised-button color="primary" (click)="changeAvatar()">Save Profile Picture</button>
+                            </div>
+                          </div>
+  
+                          
+  
+                        </div>
+  
+                      </form>
+
+                    
+                    </div>
+
+ 
+                                    
                 </div>
 
-                <div fxLayout="row wrap" fxFlexAlign="center" class="row">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="30" fxFlex="100" class="p-10">
-
-                    <mat-form-field >
-                        <input
-                          matInput
-                          type="password"
-                          placeholder="Re-try Password" 
-                          formControlName="RetryPassword"
-                      />
-                    </mat-form-field>
+              </div>
 
 
-                  </div>
 
-                
-                </div>
 
-                <div fxLayout="row wrap">
-
-               
-               
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <button mat-raised-button color="primary" (click)="changePassword()" [disabled]="!changePasswordForm.valid">Change Password</button>
-                  </div>
-                </div>
-              </form>
             </mat-card-content>
+
           </mat-tab>
 
 

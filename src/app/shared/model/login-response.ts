@@ -15,7 +15,7 @@ export interface LoginResponse {
     error?: any;
 
     account? : Account;
-    profile? : Profile;
+    profile : Profile;
     
   }
   

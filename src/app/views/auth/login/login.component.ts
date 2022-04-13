@@ -58,6 +58,9 @@ export class LoginComponent implements OnInit {
           if(!data.error)  {
 
             console.log(data);
+
+            
+
             
             this.authService.setUserInLocalStorage(data);
 

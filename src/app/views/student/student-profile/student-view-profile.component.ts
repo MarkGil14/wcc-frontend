@@ -62,6 +62,27 @@ export class StudentViewProfileComponent  extends BaseCustomComponent  implement
             this.studentJobProfile = this.student?.profile?.job_profiles[0];
 
 
+          if(this.student.profile?.Avatar)
+              this.studentService.getImage(this.student.profile.Avatar).subscribe(imgPath => {
+              
+                let reader = new FileReader();
+                
+                if(this.student.profile)
+                this.student.profile.Avatar =  reader.readAsDataURL(imgPath);
+
+                reader.onload = _event => {
+                  if(this.student.profile)
+                    this.student.profile.Avatar = reader.result; //image declared earlier
+                };
+
+              })
+          else {
+            if(this.student.profile)
+              this.student.profile.Avatar =  'assets/images/users/default.jpg';
+
+          }
+
+
 
       })
   }

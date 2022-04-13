@@ -10,7 +10,7 @@
         />
         <mat-card-content>
           <div class="pro-img">
-            <img src="{{ student?.profile?.Avatar != '' && student?.profile?.Avatar != null ? student?.profile?.Avatar : 'assets/images/users/default.jpg' }}" width="100" alt="user" style="border: solid 3px white;" />
+            <img src="{{ student?.profile?.Avatar }}" width="100" alt="user" style="border: solid 3px white;" />
           </div>
           <h3 class="m-b-0">{{ student?.profile?.FirstName + ' ' + student?.profile?.LastName }}</h3>
           <h6 class="m-t-0">{{ student?.profile?.job_profiles[0]?.Position ? student?.profile?.job_profiles[0]?.Position : 'No Job Application' }}</h6>

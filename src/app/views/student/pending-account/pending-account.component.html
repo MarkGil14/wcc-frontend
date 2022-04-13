@@ -3,6 +3,20 @@
       <mat-card>
         <mat-card-content>
           <mat-card-title>Pending Account</mat-card-title>
+
+          <div fxLayout="row wrap" >
+
+ 
+            <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100">
+              <mat-form-field>
+                <input matInput class="p-b-0" placeholder="Search here..." (keyup)="updateFilter($event)" >
+              </mat-form-field>
+            </div>
+
+        
+          </div>
+
+
           <div class="table-responsive">
             <ngx-datatable
               #table

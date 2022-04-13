@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogDataExampleDialogComponent, JobComponent } from './job.component';
-import { JobRoutingModule } from './job-routing.module';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { QuillModule } from 'ngx-quill';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchComponent } from './search.component';
+import { SearchRoutingModule } from './search.routing';
 
 
 
 @NgModule({
   declarations: [
-    JobComponent,
-    DialogDataExampleDialogComponent
+    SearchComponent,
   ],
   imports: [
     CommonModule,
@@ -24,8 +23,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    JobRoutingModule,
+    SearchRoutingModule,
     Ng2SearchPipeModule
   ]
 })
-export class JobModule { }
+export class SearchModule { }

@@ -23,7 +23,7 @@ export class Profile {
     BirthDate ?: Date;
 
  
-    Avatar ?: string;
+    Avatar ?: any;
 
 
     job_profiles ?: JobProfile[];
