@@ -223,7 +223,9 @@ export class JobComponent extends BaseCustomComponent implements OnInit {
 
         if(this.companyBanner){
           const formDataCompanyBanner = new FormData(); 
+          console.log(this.companyBanner);
           formDataCompanyBanner.append("file", this.companyBanner);      
+          console.log(formDataCompanyBanner);
           this.jobService.saveCompanyBanner(result.id, formDataCompanyBanner).subscribe((resultImage : any) => {
           })
         }
