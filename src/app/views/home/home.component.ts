@@ -14,7 +14,7 @@ export class HomeComponent extends BaseCustomComponent implements OnInit {
 
 
   
-  slides = [
+  images = [
     {
       'image' : "assets/wcc/images/bg2.jpg"
     },

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
- 
 
 @Component({
   selector: 'app-landing',
@@ -15,8 +14,9 @@ export class LandingComponent implements OnInit {
   }
 
  
+  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  slides = [
+  images = [
     {
       'image' : "assets/wcc/images/bg2.jpg"
     },
