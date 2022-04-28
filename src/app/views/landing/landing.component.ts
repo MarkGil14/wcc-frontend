@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
   images = [
     {
       'image' : "assets/wcc/images/bg2.jpg"
-    },
+    }, 
     {
         'image' : "assets/wcc/images/grad.jpeg"
     },
